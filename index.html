@@ -40,7 +40,7 @@
 <script>
     function citySearch() {
         var city = document.getElementById("cityName").value;
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=046fe2d260fc7ae2fee292fd35f84efc`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=046fe2d260fc7ae2fee292fd35f84efc`)
         .then(res => res.json())
         .then(data => {
             console.log(data.weather[0].icon);
