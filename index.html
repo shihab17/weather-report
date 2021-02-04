@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Temperature Hot</title>
+    <title>Temperature</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,20 +22,39 @@
     <div class="container">
         <form class="col-md-6 m-auto py-5">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <input type="text" id="cityName" class="form-control" placeholder="Enter a location for Weather ...">
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-danger">Search</button>
+                    <button type="button" class="btn btn-danger" onclick="citySearch()">Search</button>
                 </div>
             </div>
         </form>
         <div class="weather-status text-white text-center">
-            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
-            <h1>Dhaka</h1>
-            <h3><span>38.06</span>&deg;C</h3>
-            <h1 class="lead">Clouds</h1>
+            <img id="icon" src="" alt="">
+            <h1 id="city"></h1>
+            <h3><span id="temp"></span>&deg;C</h3>
+            <h1 class="lead" id="weather"></h1>
         </div>
     </div>
 
 </body>
+<script>
+    function citySearch() {
+        var city = document.getElementById("cityName").value;
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=046fe2d260fc7ae2fee292fd35f84efc`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.weather[0].icon);
+            let icon= data.weather[0].icon;
+            document.getElementById("city").innerText=data.name;
+            document.getElementById("temp").innerText=data.main.temp;
+            document.getElementById("weather").innerText=data.weather[0].description;
+            let iconset=`http://openweathermap.org/img/w/${icon}.png`; 
+            document.getElementById("icon").src=iconset;
+           console.log(iconset)
+        })
+        
+    }
+
+</script>
 
 </html>
