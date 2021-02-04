@@ -48,7 +48,7 @@
             document.getElementById("city").innerText=data.name;
             document.getElementById("temp").innerText=data.main.temp;
             document.getElementById("weather").innerText=data.weather[0].description;
-            let iconset=`http://openweathermap.org/img/w/${icon}.png`; 
+            let iconset=`https://openweathermap.org/img/w/${icon}.png`; 
             document.getElementById("icon").src=iconset;
            console.log(iconset)
         })
